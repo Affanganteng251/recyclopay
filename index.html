@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RecycloPay – Tukar Sampah Jadi Uang Digital</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        color: #1e293b;
+        background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid #e2e8f0;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #059669 0%, #14b8a6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      nav {
+        display: flex;
+        gap: 2rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      nav a {
+        color: #64748b;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      nav a:hover {
+        color: #059669;
+      }
+
+      .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        background: linear-gradient(135deg, #059669 0%, #14b8a6 100%);
+        color: white;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .cta-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(5, 150, 105, 0.4);
+      }
+
+      .hero {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 5rem 1.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .hero-content {
+        max-width: 600px;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 8px 16px;
+        background: #d1fae5;
+        color: #065f46;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+      }
+
+      h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+      }
+
+      .gradient-text {
+        background: linear-gradient(
+          135deg,
+          #059669 0%,
+          #14b8a6 50%,
+          #06b6d4 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-description {
+        font-size: 1.25rem;
+        color: #64748b;
+        margin-bottom: 2rem;
+      }
+
+      .feature-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .tag {
+        padding: 10px 16px;
+        background: white;
+        border: 2px solid #d1fae5;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #334155;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .phone-mockup {
+        width: 280px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .phone-frame {
+        border: 8px solid #1e293b;
+        border-radius: 48px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        background: #1e293b;
+      }
+
+      .phone-notch {
+        height: 40px;
+        background: #1e293b;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .notch-bar {
+        width: 100px;
+        height: 20px;
+        background: #334155;
+        border-radius: 20px;
+      }
+
+      .phone-screen {
+        background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+        height: 500px;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .screen-content {
+        width: 100%;
+      }
+
+      .screen-header {
+        height: 40px;
+        background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+        border-radius: 16px;
+        margin-bottom: 1rem;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+      }
+
+      .screen-text {
+        height: 32px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 12px;
+        margin-bottom: 1rem;
+      }
+
+      .screen-chart {
+        height: 120px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        padding: 1rem;
+      }
+
+      .screen-button {
+        height: 48px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 12px;
+      }
+
+      section {
+        padding: 5rem 1.5rem;
+      }
+
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      h2 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+      }
+
+      .section-subtitle {
+        font-size: 1.25rem;
+        color: #64748b;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .card {
+        background: white;
+        border: 2px solid #e2e8f0;
+        border-radius: 24px;
+        padding: 2rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        font-size: 2.5rem;
+      }
+
+      .icon-blue {
+        background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+      }
+      .icon-red {
+        background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+      }
+      .icon-green {
+        background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+      }
+      .icon-yellow {
+        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      }
+
+      .step-badge {
+        display: inline-block;
+        padding: 6px 12px;
+        background: #d1fae5;
+        color: #065f46;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .card-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .card-list li {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+        color: #64748b;
+      }
+
+      .check-icon {
+        color: #10b981;
+        font-weight: 700;
+      }
+
+      /* Background Styles */
+      .bg-white {
+        background: white;
+      }
+      .bg-gradient {
+        background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero {
+          grid-template-columns: 1fr;
+          padding: 3rem 1.5rem;
+        }
+
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        h2 {
+          font-size: 2rem;
+        }
+
+        nav {
+          display: none;
+        }
+
+        .cards-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Footer */
+      footer {
+        background: #f8fafc;
+        border-top: 2px solid #e2e8f0;
+        padding: 3rem 1.5rem;
+        text-align: center;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 1rem;
+      }
+
+      .footer-text {
+        color: #64748b;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-subtext {
+        color: #94a3b8;
+        font-size: 0.9rem;
+      }
+
+      /* Contact Cards */
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .contact-card {
+        background: white;
+        border: 2px solid #e2e8f0;
+        border-radius: 24px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s;
+      }
+
+      .contact-card:hover {
+        transform: translateY(-8px);
+      }
+
+      .contact-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 2rem;
+      }
+
+      .contact-link {
+        color: #059669;
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 1.1rem;
+      }
+
+      .contact-link:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="nav-container">
+        <div class="logo-section">
+          <svg width="40" height="40" viewBox="0 0 200 200">
+            <g fill="#10b981">
+              <path d="M76 30 l18 30 h-20 l-10 18 l-16 -28 z"></path>
+              <path d="M150 78 l-34 -2 l10 -17 l-10 -18 l32 2 z"></path>
+              <path d="M66 144 l16 -28 l14 14 l20 -1 l-16 28 z"></path>
+            </g>
+            <path
+              d="M80 85 c0 -12 16 -20 20 -28 c4 8 20 16 20 28 c14 10 24 26 24 44 c0 26 -24 44 -64 44 s-40 -18 -40 -44 c0 -18 10 -34 24 -44 z"
+              fill="#fbbf24"
+            ></path>
+          </svg>
+          <span class="logo-text">RecycloPay</span>
+        </div>
+        <nav>
+          <a href="#how">Cara Kerja</a>
+          <a href="#scan">Scan & Validasi</a>
+          <a href="#rewards">Pembayaran</a>
+          <a href="#cashflow">Arus Dana</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Kontak</a>
+        </nav>
+        <a href="#cta" class="cta-btn">Coba Beta</a>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <span class="badge">🌱 Start-Up Hijau</span>
+        <h1>
+          Tukar Sampah Jadi
+          <span class="gradient-text">Uang Digital</span>
+        </h1>
+        <p class="hero-description">
+          Aplikasi yang menghubungkan masyarakat, bank sampah, dan pabrik daur
+          ulang. Transparan, cepat, dan berdampak nyata.
+        </p>
+        <div class="feature-tags">
+          <span class="tag">📍 Smart Map</span>
+          <span class="tag">💰 Uang Tunai Digital</span>
+          <span class="tag">🎮 Gamifikasi</span>
+          <span class="tag">🛡️ Anti-Fraud</span>
+        </div>
+      </div>
+      <div class="phone-mockup">
+        <div class="phone-frame">
+          <div class="phone-notch">
+            <div class="notch-bar"></div>
+          </div>
+          <div class="phone-screen">
+            <div class="screen-content">
+              <div class="screen-header"></div>
+              <div class="screen-text"></div>
+              <div class="screen-chart">
+                <svg width="100" height="80" viewBox="0 0 100 80">
+                  <circle cx="50" cy="40" r="35" fill="#d1fae5"></circle>
+                  <path
+                    d="M20 50 L35 30 L50 40 L70 15"
+                    stroke="#10b981"
+                    stroke-width="4"
+                    fill="none"
+                    stroke-linecap="round"
+                  ></path>
+                </svg>
+              </div>
+              <div class="screen-button"></div>
+            </div>
+          </div>
+          <div class="phone-notch"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARA KERJA -->
+    <section id="how" class="bg-white">
+      <div class="container">
+        <div class="section-header">
+          <h2>Cara Kerja RecycloPay</h2>
+          <p class="section-subtitle">
+            Empat langkah sederhana dari setor sampah hingga tarik saldo
+          </p>
+        </div>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-icon icon-blue">📷</div>
+            <span class="step-badge">Langkah 1</span>
+            <h3>Setor Sampah & Dapatkan QR Bag</h3>
+            <ul class="card-list">
+              <li>
+                <span class="check-icon">✓</span> Pilih jenis material dan
+                estimasi berat
+              </li>
+              <li>
+                <span class="check-icon">✓</span> Ambil foto bukti (close-up &
+                konteks)
+              </li>
+              <li>
+                <span class="check-icon">✓</span> Dapatkan QR unik untuk tiap
+                kantong
+              </li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-icon icon-red">⚖️</div>
+            <span class="step-badge">Langkah 2</span>
+            <h3>Timbang & Verifikasi Kualitas</h3>
+            <ul class="card-list">
+              <li>
+                <span class="check-icon">✓</span> Kurir/Bank Sampah menimbang
+                via Bluetooth Scale
+              </li>
+              <li>
+                <span class="check-icon">✓</span> QC: Grade A/B/C memengaruhi
+                nilai
+              </li>
+              <li>
+                <span class="check-icon">✓</span> Data terkirim real-time ke
+                server
+              </li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-icon icon-green">🏭</div>
+            <span class="step-badge">Langkah 3</span>
+            <h3>Pabrik/Recycler Membeli Material</h3>
+            <ul class="card-list">
+              <li>
+                <span class="check-icon">✓</span> Kontrak harga dasar per kg
+              </li>
+              <li>
+                <span class="check-icon">✓</span> Pengiriman terjadwal /
+                agregasi volume
+              </li>
+              <li>
+                <span class="check-icon">✓</span> Pelacakan batch yang
+                transparan
+              </li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-icon icon-yellow">💳</div>
+            <span class="step-badge">Langkah 4</span>
+            <h3>Bayaran Tunai Digital Masuk</h3>
+            <ul class="card-list">
+              <li>
+                <span class="check-icon">✓</span> Nilai langsung dalam rupiah
+              </li>
+              <li>
+                <span class="check-icon">✓</span> Tarik ke e-wallet/QRIS/Bank
+              </li>
+              <li>
+                <span class="check-icon">✓</span> Riwayat transaksi lengkap
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCAN & VALIDASI -->
+    <section id="scan" class="bg-gradient">
+      <div class="container">
+        <div class="section-header">
+          <h2>Scan & Validasi Pintar</h2>
+          <p class="section-subtitle">
+            AI on-device + verifikasi operator untuk mencegah manipulasi
+          </p>
+        </div>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-icon icon-blue">🔍</div>
+            <h3>Deteksi Visual</h3>
+            <p style="color: #64748b">
+              Model vision mendeteksi jenis material, fragmentasi potongan, dan
+              kontaminasi (A/B/C). Foto wajib: close-up & konteks.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon icon-red">⚖️</div>
+            <h3>Berat vs Volume</h3>
+            <p style="color: #64748b">
+              Cross-check antara berat timbangan dan estimasi volume dari foto.
+              Anomali otomatis masuk <em>manual review</em>.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon icon-green">🛡️</div>
+            <h3>Anti-Fraud</h3>
+            <p style="color: #64748b">
+              Geo-fence drop-off, hash anti-duplikasi foto, QR bag sekali pakai,
+              dan sistem trust level pengguna.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PEMBAYARAN -->
+    <section id="rewards" class="bg-white">
+      <div class="container">
+        <div class="section-header">
+          <h2>Pembayaran & Penarikan</h2>
+          <p class="section-subtitle">
+            Bayaran langsung dalam rupiah berdasarkan kualitas material
+          </p>
+        </div>
+        <div class="card" style="max-width: 800px; margin: 0 auto">
+          <h3>Rumus Nilai (Rupiah)</h3>
+          <div
+            style="
+              background: #d1fae5;
+              border: 2px solid #10b981;
+              border-radius: 16px;
+              padding: 1.5rem;
+              margin: 1.5rem 0;
+              text-align: center;
+            "
+          >
+            <code style="font-size: 1.1rem; color: #065f46"
+              >nilai (Rp) = harga_dasar × berat(kg) × koefisien_grade −
+              biaya</code
+            >
+          </div>
+          <ul class="card-list">
+            <li>
+              <span class="check-icon">🏆</span> <strong>Grade A</strong> = 1.00
+              · <strong>Grade B</strong> = 0.85 · <strong>Grade C</strong> =
+              0.65
+            </li>
+            <li>
+              <span class="check-icon">💎</span> Tidak ada konversi poin, saldo
+              langsung rupiah
+            </li>
+            <li>
+              <span class="check-icon">💸</span> Penarikan: e-wallet, bank
+              (BI-FAST), QRIS, atau donasi hijau
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARUS DANA -->
+    <section id="cashflow" class="bg-gradient">
+      <div class="container">
+        <div class="section-header">
+          <h2>Diagram Arus Dana</h2>
+          <p class="section-subtitle">
+            Dari setor sampah hingga saldo digital dialokasikan ke pengguna
+          </p>
+        </div>
+        <div class="card">
+          <svg
+            width="100%"
+            height="200"
+            viewBox="0 0 800 200"
+            style="overflow: visible"
+          >
+            <rect
+              x="20"
+              y="40"
+              width="150"
+              height="80"
+              rx="16"
+              fill="#ecfeff"
+              stroke="#22d3ee"
+              stroke-width="2"
+            ></rect>
+            <text
+              x="95"
+              y="85"
+              text-anchor="middle"
+              font-size="14"
+              font-weight="bold"
+            >
+              User Setor
+            </text>
+
+            <path d="M170 80 H210" stroke="#10b981" stroke-width="6"></path>
+            <path
+              d="M210 80 L200 75 M210 80 L200 85"
+              stroke="#10b981"
+              stroke-width="6"
+            ></path>
+
+            <rect
+              x="210"
+              y="40"
+              width="150"
+              height="80"
+              rx="16"
+              fill="#f0fdf4"
+              stroke="#10b981"
+              stroke-width="2"
+            ></rect>
+            <text
+              x="285"
+              y="85"
+              text-anchor="middle"
+              font-size="14"
+              font-weight="bold"
+            >
+              Timbang & QC
+            </text>
+
+            <path d="M360 80 H400" stroke="#10b981" stroke-width="6"></path>
+            <path
+              d="M400 80 L390 75 M400 80 L390 85"
+              stroke="#10b981"
+              stroke-width="6"
+            ></path>
+
+            <rect
+              x="400"
+              y="40"
+              width="150"
+              height="80"
+              rx="16"
+              fill="#eef2ff"
+              stroke="#6366f1"
+              stroke-width="2"
+            ></rect>
+            <text
+              x="475"
+              y="85"
+              text-anchor="middle"
+              font-size="14"
+              font-weight="bold"
+            >
+              Server
+            </text>
+
+            <path d="M550 80 H590" stroke="#10b981" stroke-width="6"></path>
+            <path
+              d="M590 80 L580 75 M590 80 L580 85"
+              stroke="#10b981"
+              stroke-width="6"
+            ></path>
+
+            <rect
+              x="590"
+              y="40"
+              width="150"
+              height="80"
+              rx="16"
+              fill="#fffbeb"
+              stroke="#f59e0b"
+              stroke-width="2"
+            ></rect>
+            <text
+              x="665"
+              y="85"
+              text-anchor="middle"
+              font-size="14"
+              font-weight="bold"
+            >
+              Recycler Beli
+            </text>
+
+            <rect
+              x="260"
+              y="150"
+              width="280"
+              height="40"
+              rx="20"
+              fill="#d1fae5"
+            ></rect>
+            <text
+              x="400"
+              y="175"
+              text-anchor="middle"
+              font-size="13"
+              font-weight="bold"
+              fill="#065f46"
+            >
+              💰 Saldo → e-wallet / QRIS
+            </text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="bg-white">
+      <div class="container">
+        <div class="section-header">
+          <h2>FAQ Singkat</h2>
+          <p class="section-subtitle">Jawaban ringkas untuk pertanyaan umum</p>
+        </div>
+        <div
+          class="cards-grid"
+          style="
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            max-width: 1000px;
+            margin: 0 auto;
+          "
+        >
+          <div class="card">
+            <div style="display: flex; align-items: start; gap: 1rem">
+              <div
+                style="
+                  width: 48px;
+                  height: 48px;
+                  border-radius: 12px;
+                  background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: white;
+                  font-weight: bold;
+                  font-size: 1.5rem;
+                  flex-shrink: 0;
+                "
+              >
+                ?
+              </div>
+              <div>
+                <h3 style="font-size: 1.2rem">
+                  Dari mana dana untuk saldo user?
+                </h3>
+                <p style="color: #64748b">
+                  Dari hasil penjualan material ke pabrik/recycler, ditambah
+                  dukungan CSR dan skema bagi hasil. Dana disalurkan via escrow
+                  dan gateway resmi.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div style="display: flex; align-items: start; gap: 1rem">
+              <div
+                style="
+                  width: 48px;
+                  height: 48px;
+                  border-radius: 12px;
+                  background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: white;
+                  font-weight: bold;
+                  font-size: 1.5rem;
+                  flex-shrink: 0;
+                "
+              >
+                ?
+              </div>
+              <div>
+                <h3 style="font-size: 1.2rem">
+                  Bagaimana mencegah kecurangan?
+                </h3>
+                <p style="color: #64748b">
+                  AI visual, timbangan Bluetooth, geo-fence, hash
+                  anti-duplikasi, QR bag unik, dan manual review oleh operator.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta" class="bg-gradient">
+      <div class="container" style="max-width: 900px">
+        <div
+          style="
+            background: linear-gradient(135deg, #059669 0%, #14b8a6 100%);
+            padding: 3px;
+            border-radius: 48px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+          "
+        >
+          <div
+            style="
+              background: white;
+              border-radius: 45px;
+              padding: 3rem;
+              text-align: center;
+            "
+          >
+            <h3 style="font-size: 2.5rem; margin-bottom: 1rem">
+              Siap mengubah sampah jadi nilai? 🚀
+            </h3>
+            <p style="font-size: 1.25rem; color: #64748b; margin-bottom: 2rem">
+              Gabung program beta dan jadilah bagian dari gerakan #RecycleToEarn
+            </p>
+            <div
+              style="
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+              "
+            >
+              <button
+                onclick="openPartnerModal()"
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                  padding: 16px 32px;
+                  background: linear-gradient(135deg, #059669 0%, #14b8a6 100%);
+                  color: white;
+                  border-radius: 12px;
+                  text-decoration: none;
+                  font-weight: 700;
+                  font-size: 1.1rem;
+                  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+                  border: none;
+                  cursor: pointer;
+                "
+              >
+                Daftar Mitra →
+              </button>
+              <button
+                onclick="openDeckModal()"
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                  padding: 16px 32px;
+                  background: white;
+                  color: #334155;
+                  border: 2px solid #e2e8f0;
+                  border-radius: 12px;
+                  text-decoration: none;
+                  font-weight: 700;
+                  font-size: 1.1rem;
+                  cursor: pointer;
+                "
+              >
+                📄 Unduh Deck
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="bg-white">
+      <div class="container">
+        <div class="section-header">
+          <h2>Kontak Kami</h2>
+          <p class="section-subtitle">
+            Hubungi kami untuk kemitraan, media, atau dukungan pengguna
+          </p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="contact-icon icon-green">✉️</div>
+            <h3>Email</h3>
+            <a href="mailto:recyclopay@gmail.com" class="contact-link"
+              >recyclopay@gmail.com</a
+            >
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon icon-green">💬</div>
+            <h3>WhatsApp</h3>
+            <a href="https://wa.me/628996576294" class="contact-link"
+              >+62 899-6576-294</a
+            >
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon icon-blue">📱</div>
+            <h3>Media Sosial</h3>
+            <p style="color: #64748b; margin-top: 0.5rem">
+              @recyclopaystore (Instagram)<br />
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="footer-logo">
+          <svg width="32" height="32" viewBox="0 0 200 200">
+            <g fill="#10b981">
+              <path d="M76 30 l18 30 h-20 l-10 18 l-16 -28 z"></path>
+              <path d="M150 78 l-34 -2 l10 -17 l-10 -18 l32 2 z"></path>
+              <path d="M66 144 l16 -28 l14 14 l20 -1 l-16 28 z"></path>
+            </g>
+            <path
+              d="M80 85 c0 -12 16 -20 20 -28 c4 8 20 16 20 28 c14 10 24 26 24 44 c0 26 -24 44 -64 44 s-40 -18 -40 -44 c0 -18 10 -34 24 -44 z"
+              fill="#fbbf24"
+            ></path>
+          </svg>
+          <span class="logo-text">RecycloPay</span>
+        </div>
+        <p class="footer-text">
+          © 2025 RecycloPay – Mencetak Generasi Inovatif
+        </p>
+        <p class="footer-subtext">Ubah Sampah Jadi Cuan, Selamatkan Bumi 🌱</p>
+      </div>
+    </footer>
+
+    <script>
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll("section").forEach((section, index) => {
+        section.style.opacity = "0";
+        section.style.transform = "translateY(20px)";
+        section.style.transition =
+          "opacity 0.6s ease-out, transform 0.6s ease-out";
+        section.style.transitionDelay = `${index * 0.1}s`;
+        observer.observe(section);
+      });
+    </script>
+    <!-- MODAL: DAFTAR MITRA -->
+    <div
+      id="partnerModal"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+      "
+    >
+      <div
+        style="
+          background: white;
+          border-radius: 24px;
+          max-width: 500px;
+          width: 90%;
+          padding: 2rem;
+          text-align: left;
+          position: relative;
+        "
+      >
+        <button
+          onclick="closePartnerModal()"
+          style="
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+          "
+        >
+          ✖
+        </button>
+        <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: #065f46">
+          Daftar Mitra RecycloPay
+        </h3>
+        <p style="color: #64748b; margin-bottom: 1rem">
+          Isi formulir di bawah untuk menjadi mitra bank sampah, recycler, atau
+          sponsor.
+        </p>
+        <form id="partnerForm" onsubmit="submitPartnerForm(event)">
+          <label>Nama Lengkap</label>
+          <input
+            type="text"
+            name="nama"
+            required
+            style="
+              width: 100%;
+              margin: 0.5rem 0 1rem;
+              padding: 0.75rem;
+              border: 1px solid #e2e8f0;
+              border-radius: 8px;
+            "
+          />
+
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            required
+            style="
+              width: 100%;
+              margin: 0.5rem 0 1rem;
+              padding: 0.75rem;
+              border: 1px solid #e2e8f0;
+              border-radius: 8px;
+            "
+          />
+
+          <label>Jenis Mitra</label>
+          <select
+            name="jenis"
+            required
+            style="
+              width: 100%;
+              margin: 0.5rem 0 1rem;
+              padding: 0.75rem;
+              border: 1px solid #e2e8f0;
+              border-radius: 8px;
+            "
+          >
+            <option value="">-- Pilih --</option>
+            <option>Bank Sampah</option>
+            <option>Pabrik Daur Ulang</option>
+            <option>Komunitas / LSM</option>
+            <option>CSR / Sponsor</option>
+          </select>
+
+          <label>Pesan / Catatan</label>
+          <textarea
+            name="pesan"
+            rows="3"
+            style="
+              width: 100%;
+              margin: 0.5rem 0 1.5rem;
+              padding: 0.75rem;
+              border: 1px solid #e2e8f0;
+              border-radius: 8px;
+            "
+          ></textarea>
+
+          <button
+            type="submit"
+            style="
+              width: 100%;
+              background: linear-gradient(135deg, #059669 0%, #14b8a6 100%);
+              color: white;
+              padding: 1rem;
+              border: none;
+              border-radius: 12px;
+              font-weight: 700;
+              cursor: pointer;
+            "
+          >
+            Kirim Pendaftaran
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL: UNDUH DECK -->
+    <div
+      id="deckModal"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+      "
+    >
+      <div
+        style="
+          background: white;
+          border-radius: 24px;
+          max-width: 450px;
+          width: 90%;
+          padding: 2rem;
+          text-align: center;
+          position: relative;
+        "
+      >
+        <button
+          onclick="closeDeckModal()"
+          style="
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+          "
+        >
+          ✖
+        </button>
+        <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: #065f46">
+          Unduh Pitch Deck
+        </h3>
+        <p style="color: #64748b; margin-bottom: 1.5rem">
+          Pelajari potensi RecycloPay dan bagaimana kami membangun ekonomi
+          sirkular digital.
+        </p>
+        <a
+          href="assets/RecycloPay_PitchDeck.pdf"
+          download
+          style="
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #059669 0%, #14b8a6 100%);
+            color: white;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+          "
+          >📥 Unduh Sekarang</a
+        >
+      </div>
+    </div>
+    <script>
+      function openPartnerModal() {
+        document.getElementById("partnerModal").style.display = "flex";
+      }
+      function closePartnerModal() {
+        document.getElementById("partnerModal").style.display = "none";
+      }
+      function openDeckModal() {
+        document.getElementById("deckModal").style.display = "flex";
+      }
+      function closeDeckModal() {
+        document.getElementById("deckModal").style.display = "none";
+      }
+
+      function submitPartnerForm(event) {
+        event.preventDefault();
+        alert("Terima kasih! Pendaftaran mitra Anda telah dikirim.");
+        closePartnerModal();
+      }
+    </script>
+    <script>
+      function submitPartnerForm(event) {
+        event.preventDefault();
+        const form = event.target;
+        const data = new FormData(form);
+
+        const endpoint = "https://getform.io/f/amdyezqb";
+
+        fetch(endpoint, {
+          method: "POST",
+          body: data,
+          headers: { Accept: "application/json" },
+        })
+          .then((response) => {
+            if (response.ok) {
+              alert("🎉 Terima kasih! Pendaftaran kamu sudah terkirim.");
+              form.reset();
+              closePartnerModal();
+            } else {
+              alert("⚠️ Gagal mengirim. Silakan coba lagi.");
+            }
+          })
+          .catch((error) => {
+            alert("Terjadi kesalahan: " + error.message);
+          });
+      }
+    </script>
+  </body>
+</html>
